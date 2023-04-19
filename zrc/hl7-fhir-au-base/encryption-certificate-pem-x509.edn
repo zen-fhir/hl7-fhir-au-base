@@ -1,0 +1,8 @@
+{ns hl7-fhir-au-base.encryption-certificate-pem-x509,
+ import #{zen.fhir hl7-fhir-r4-core.string},
+ schema {:zen/tags #{zen/schema zen.fhir/structure-schema},
+         :zen/desc "Base64 encoded string PEM format X509 certificate",
+         :zen.fhir/type "string",
+         :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/encryption-certificate-pem-x509",
+         :zen.fhir/version "0.6.22",
+         :confirms #{hl7-fhir-r4-core.string/schema}}}

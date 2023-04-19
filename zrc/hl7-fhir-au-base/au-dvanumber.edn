@@ -1,0 +1,16 @@
+{ns hl7-fhir-au-base.au-dvanumber,
+ import #{zen.fhir
+          hl7-fhir-r4-core.Identifier
+          hl7-fhir-au-base.value-set.dva-entitlement},
+ schema {:zen.fhir/version "0.6.22",
+         :confirms #{hl7-fhir-r4-core.Identifier/schema},
+         :zen/tags #{zen/schema zen.fhir/structure-schema},
+         :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/au-dvanumber",
+         :require #{:system :value :type},
+         :type zen/map,
+         :zen/desc "This identifier profile defines a Department of Veterans' Affairs (DVA) number) in an Australian context. This definition supports sending an individual's state-based DVA file number as displayed on a [Veteran Card](https://www.dva.gov.au/health-and-treatment/veteran-healthcare-cards/veteran-card), i.e. a Gold, White, or Orange Card. A Veteran Card may be issued by DVA to eligible individuals to allowing access to specific goods and services at a concessional rate.",
+         :keys {:type {:zen.fhir/value-set {:symbol hl7-fhir-au-base.value-set.dva-entitlement/value-set,
+                                            :strength :required}},
+                :system {:const {:value "http://ns.electronichealth.net.au/id/dva"}},
+                :value {:zen/desc "DVA number"}},
+         :zen.fhir/type "Identifier"}}

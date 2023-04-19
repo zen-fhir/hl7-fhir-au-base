@@ -1,0 +1,16 @@
+{ns hl7-fhir-au-base.au-australianregistredbodynumber,
+ import #{hl7-fhir-au-base.value-set.au-v2-0203-extended
+          zen.fhir
+          hl7-fhir-r4-core.Identifier},
+ schema {:zen.fhir/version "0.6.22",
+         :confirms #{hl7-fhir-r4-core.Identifier/schema},
+         :zen/tags #{zen/schema zen.fhir/structure-schema},
+         :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/au-australianregistredbodynumber",
+         :require #{:system :value :type},
+         :type zen/map,
+         :zen/desc "This identifier profile defines an Australian Registered Body Number (ARBN) in an Australian context. ARBNs are issued to registrable Australian bodies and foreign companies.",
+         :keys {:type {:zen.fhir/value-set {:symbol hl7-fhir-au-base.value-set.au-v2-0203-extended/value-set,
+                                            :strength :extensible}},
+                :system {:const {:value "http://hl7.org.au/id/arbn"}},
+                :value {:zen/desc "ARBN"}},
+         :zen.fhir/type "Identifier"}}

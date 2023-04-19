@@ -1,0 +1,9 @@
+{ns hl7-fhir-au-base.author-related-person,
+ import #{zen.fhir hl7-fhir-r4-core.RelatedPerson},
+ schema {:zen/tags #{zen/schema zen.fhir/structure-schema},
+         :zen/desc "Who authored the record",
+         :zen.fhir/type "Reference",
+         :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/author-related-person",
+         :zen.fhir/version "0.6.22",
+         :confirms #{zen.fhir/Reference},
+         :zen.fhir/reference {:refers #{hl7-fhir-r4-core.RelatedPerson/schema}}}}

@@ -1,0 +1,9 @@
+{ns hl7-fhir-au-base.value-set.pbs-item,
+ import #{zen.fhir},
+ value-set {:zen/tags #{zen.fhir/value-set},
+            :zen/desc "The PBS Item Codes value set includes all values from Australian Pharmaceutical Benefits Scheme (PBS) schedule published by the Department of Health. Further details can be found at https://www.pbs.gov.au/pbs/.",
+            :zen.fhir/version "0.6.22",
+            :fhir/code-systems #{{:fhir/url "http://pbs.gov.au/code/item",
+                                  :zen.fhir/content :not-present}},
+            :uri "http://terminology.hl7.org.au/ValueSet/pbs-item",
+            :version "4.1.0"}}

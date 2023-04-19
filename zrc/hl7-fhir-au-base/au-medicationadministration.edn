@@ -1,0 +1,22 @@
+{ns hl7-fhir-au-base.au-medicationadministration,
+ import #{zen.fhir
+          hl7-fhir-r4-core.MedicationAdministration
+          hl7-fhir-r4-core.Medication},
+ schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen/desc "This profile defines a medication administration structure that localises core concepts, including terminology, for use in an Australian context. The purpose of this profile is to provide national level agreement on core localised concepts. This profile does not force conformance to core localised concepts. It enables implementers and modellers to make their own rules, i.e. [profiling](http://hl7.org/fhir/profiling.html), about how to support these concepts for specific implementation needs.",
+         :zen.fhir/type "MedicationAdministration",
+         :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/au-medicationadministration",
+         :zen.fhir/version "0.6.22",
+         :confirms #{hl7-fhir-r4-core.MedicationAdministration/schema
+                     zen.fhir/Resource},
+         :type zen/map,
+         :keys {:medication {:fhir/polymorphic true,
+                             :type zen/map,
+                             :keys {:CodeableConcept {:type zen/map,
+                                                      :keys {:coding {:type zen/vector,
+                                                                      :every {:zen/desc "Medication Codes"}}},
+                                                      :zen/desc "Coded Medication"},
+                                    :Reference {:confirms #{zen.fhir/Reference},
+                                                :zen.fhir/reference {:refers #{hl7-fhir-r4-core.Medication/schema}},
+                                                :zen/desc "Medication Reference"}},
+                             :zen/desc "Medication Detail"}}}}

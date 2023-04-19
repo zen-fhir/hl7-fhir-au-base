@@ -1,0 +1,12 @@
+{ns hl7-fhir-au-base.contact-purpose,
+ import #{zen.fhir
+          hl7-fhir-au-base.value-set.contact-purpose
+          hl7-fhir-r4-core.CodeableConcept},
+ schema {:zen/tags #{zen/schema zen.fhir/structure-schema},
+         :zen/desc "Contact purpose",
+         :zen.fhir/type "CodeableConcept",
+         :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/contact-purpose",
+         :zen.fhir/version "0.6.22",
+         :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+         :zen.fhir/value-set {:symbol hl7-fhir-au-base.value-set.contact-purpose/value-set,
+                              :strength :extensible}}}

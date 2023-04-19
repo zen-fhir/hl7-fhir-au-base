@@ -1,0 +1,36 @@
+{ns hl7-fhir-au-base.au-medlist,
+ import #{hl7-fhir-au-base.change-description
+          zen.fhir
+          hl7-fhir-au-base.au-norelevantfinding
+          hl7-fhir-r4-core.MedicationAdministration
+          hl7-fhir-au-base.author-related-person
+          hl7-fhir-r4-core.MedicationDispense
+          hl7-fhir-r4-core.MedicationRequest
+          hl7-fhir-r4-core.Immunization
+          hl7-fhir-r4-core.MedicationStatement
+          hl7-fhir-au-base.value-set.medicine-item-change
+          hl7-fhir-r4-core.List},
+ schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen/desc "This profile defines a list structure that localises core concepts for use as a medicines list in an Australian context. This profile is intended to offer a common structure and expectations for a list of medications associated with a patient in an Australian healthcare context.",
+         :zen.fhir/type "List",
+         :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/au-medlist",
+         :zen.fhir/version "0.6.22",
+         :confirms #{zen.fhir/Resource hl7-fhir-r4-core.List/schema},
+         :type zen/map,
+         :keys {:sourceRelatedPerson {:confirms #{hl7-fhir-au-base.author-related-person/schema},
+                                      :fhir/extensionUri "http://hl7.org.au/fhir/StructureDefinition/author-related-person",
+                                      :zen/desc "Related person that defined the list contents (aka Author)"},
+                :entry {:type zen/vector,
+                        :every {:type zen/map,
+                                :keys {:changeDescription {:confirms #{hl7-fhir-au-base.change-description/schema},
+                                                           :fhir/extensionUri "http://hl7.org.au/fhir/StructureDefinition/change-description"},
+                                       :flag {:zen.fhir/value-set {:symbol hl7-fhir-au-base.value-set.medicine-item-change/value-set,
+                                                                   :strength :preferred},
+                                              :zen/desc "Medicine item change"},
+                                       :item {:confirms #{zen.fhir/Reference},
+                                              :zen.fhir/reference {:refers #{hl7-fhir-r4-core.MedicationDispense/schema
+                                                                             hl7-fhir-r4-core.MedicationAdministration/schema
+                                                                             hl7-fhir-au-base.au-norelevantfinding/schema
+                                                                             hl7-fhir-r4-core.Immunization/schema
+                                                                             hl7-fhir-r4-core.MedicationStatement/schema
+                                                                             hl7-fhir-r4-core.MedicationRequest/schema}}}}}}}}}

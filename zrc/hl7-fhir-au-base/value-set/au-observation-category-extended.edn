@@ -1,0 +1,18 @@
+{ns hl7-fhir-au-base.value-set.au-observation-category-extended,
+ import #{zen.fhir},
+ value-set {:zen/tags #{zen.fhir/value-set},
+            :zen/desc "Observation Category Codes extended for use in an Australian context. Includes HL7 international codes plus Australian additions to create a complete set.",
+            :zen.fhir/version "0.6.22",
+            :fhir/code-systems #{{:fhir/url "http://terminology.hl7.org/CodeSystem/observation-category",
+                                  :zen.fhir/content :bundled}
+                                 {:fhir/url "http://terminology.hl7.org.au/CodeSystem/observation-category",
+                                  :zen.fhir/content :bundled}},
+            :uri "http://terminology.hl7.org.au/ValueSet/observation-category-extended",
+            :version "4.1.0",
+            :ftr {:module "hl7-fhir-au-base",
+                  :source-url "https://storage.googleapis.com",
+                  :source-type :cloud-storage,
+                  :ftr-path "ftr",
+                  :tag "init",
+                  :validation-index {:type :nippy,
+                                     :file "index.nippy"}}}}

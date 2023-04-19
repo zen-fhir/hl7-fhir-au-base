@@ -1,0 +1,54 @@
+{ns hl7-fhir-au-base.au-organization,
+ import #{hl7-fhir-au-base.au-cspregistrationnumber
+          zen.fhir
+          hl7-fhir-au-base.au-nataaccreditationnumber
+          hl7-fhir-au-base.au-australiancompanynumber
+          hl7-fhir-au-base.au-australianregistredbodynumber
+          hl7-fhir-au-base.au-hpio
+          hl7-fhir-au-base.au-pharmacyapprovalnumber
+          hl7-fhir-au-base.value-set.contact-purpose
+          hl7-fhir-au-base.au-paioidentifier
+          hl7-fhir-r4-core.Identifier
+          hl7-fhir-au-base.au-address
+          hl7-fhir-au-base.au-australianbusinessnumber
+          hl7-fhir-r4-core.Organization
+          hl7-fhir-r4-core.Address},
+ schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen/desc "This profile defines an organisation structure that localises core concepts, including identifiers and terminology, for use in an Australian context. The purpose of this profile is to provide national level agreement on core localised concepts. This profile does not force conformance to core localised concepts. It enables implementers and modellers to make their own rules, i.e. [profiling](http://hl7.org/fhir/profiling.html), about how to support these concepts for specific implementation needs.",
+         :zen.fhir/type "Organization",
+         :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/au-organization",
+         :zen.fhir/version "0.6.22",
+         :confirms #{hl7-fhir-r4-core.Organization/schema
+                     zen.fhir/Resource},
+         :type zen/map,
+         :keys {:identifier {:type zen/vector,
+                             :every {:zen/desc "Identifies this organization across multiple systems",
+                                     :type zen/case,
+                                     :case [{:when {:confirms #{hl7-fhir-r4-core.Identifier/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-hpio/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-paioidentifier/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-cspregistrationnumber/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-australianbusinessnumber/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-australiancompanynumber/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-australianregistredbodynumber/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-nataaccreditationnumber/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-pharmacyapprovalnumber/schema}},
+                                             :then {}}]}},
+                :address {:type zen/vector,
+                          :every {:type zen/case,
+                                  :case [{:when {:confirms #{hl7-fhir-r4-core.Address/schema}},
+                                          :then {}}
+                                         {:when {:confirms #{hl7-fhir-au-base.au-address/schema}},
+                                          :then {}}]}},
+                :contact {:type zen/vector,
+                          :every {:type zen/map,
+                                  :keys {:purpose {:zen.fhir/value-set {:symbol hl7-fhir-au-base.value-set.contact-purpose/value-set,
+                                                                        :strength :extensible}}}}}}}}

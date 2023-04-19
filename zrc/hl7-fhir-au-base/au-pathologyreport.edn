@@ -1,0 +1,54 @@
+{ns hl7-fhir-au-base.au-pathologyreport,
+ import #{hl7-fhir-r4-core.CarePlan
+          zen.fhir
+          hl7-fhir-au-base.au-accessionnumber
+          hl7-fhir-r4-core.DiagnosticReport
+          hl7-fhir-r4-core.Patient
+          hl7-fhir-au-base.au-localreportidentifier
+          hl7-fhir-au-base.au-localorderidentifier
+          hl7-fhir-au-base.au-diagnosticresult
+          hl7-fhir-au-base.au-pathologyresult
+          hl7-fhir-au-base.au-specimen
+          hl7-fhir-au-base.au-diagnosticrequest
+          hl7-fhir-r4-core.ServiceRequest
+          hl7-fhir-r4-core.Identifier},
+ schema {:zen.fhir/version "0.6.22",
+         :confirms #{hl7-fhir-r4-core.DiagnosticReport/schema
+                     zen.fhir/Resource},
+         :zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/au-pathologyreport",
+         :require #{:category :effective :subject},
+         :type zen/map,
+         :zen/desc "This profile defines a diagnostic report structure to represent a pathology report issued by a diagnostic service provider in an Australian context. This profile is intended to be capable of supporting reporting for all pathology disciplines (e.g. including microbiology, histopathology, cytology, blood transfusion) with the exception of genomics.\n\nThis profile does not provide full support for structured pathology reporting. It is expected that this support is best handled by a set of profiles that represent the structured reporting requirements for each specific protocol (see for example [RCPA’s structured pathology reporting of cancer](https://www.rcpa.edu.au/Library/Practising-Pathology/Structured-Pathology-Reporting-of-Cancer)); this is not in the scope of this implementation guide at this time.",
+         :keys {:category {:type zen/vector, :minItems 1},
+                :specimen {:type zen/vector,
+                           :every {:confirms #{zen.fhir/Reference},
+                                   :zen.fhir/reference {:refers #{hl7-fhir-au-base.au-specimen/schema}}}},
+                :result {:type zen/vector,
+                         :every {:confirms #{zen.fhir/Reference},
+                                 :zen.fhir/reference {:refers #{hl7-fhir-au-base.au-pathologyresult/schema
+                                                                hl7-fhir-au-base.au-diagnosticresult/schema}}}},
+                :effective {:fhir/polymorphic true,
+                            :type zen/map,
+                            :zen/desc "Time of specimen collection"},
+                :code {:zen/desc "Pathology test or test group"},
+                :identifier {:type zen/vector,
+                             :every {:zen/desc "Business identifier for report",
+                                     :type zen/case,
+                                     :case [{:when {:confirms #{hl7-fhir-r4-core.Identifier/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-localorderidentifier/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-localreportidentifier/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-accessionnumber/schema}},
+                                             :then {}}]}},
+                :basedOn {:type zen/vector,
+                          :every {:confirms #{zen.fhir/Reference},
+                                  :zen.fhir/reference {:refers #{hl7-fhir-au-base.au-diagnosticrequest/schema
+                                                                 hl7-fhir-r4-core.ServiceRequest/schema
+                                                                 hl7-fhir-r4-core.CarePlan/schema}},
+                                  :zen/desc "Pathology order"}},
+                :subject {:confirms #{zen.fhir/Reference},
+                          :zen.fhir/reference {:refers #{hl7-fhir-r4-core.Patient/schema}}}},
+         :zen.fhir/type "DiagnosticReport"}}

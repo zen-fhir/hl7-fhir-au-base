@@ -1,0 +1,100 @@
+{ns hl7-fhir-au-base.au-patient,
+ import #{hl7-fhir-au-base.au-medicarecardnumber
+          hl7-fhir-au-base.closing-the-gap-registration
+          hl7-fhir-au-base.indigenous-status
+          zen.fhir
+          hl7-fhir-au-base.au-cwlthseniorshealthcardnumber
+          hl7-fhir-au-base.au-healthcarecardnumber
+          hl7-fhir-au-base.au-pensionerconcessioncardnumber
+          hl7-fhir-r4-core.patient-mothersMaidenName
+          hl7-fhir-r4-core.Patient
+          hl7-fhir-au-base.au-dvanumber
+          hl7-fhir-au-base.au-insurancemembernumber
+          hl7-fhir-r4-core.patient-interpreterRequired
+          hl7-fhir-au-base.au-medicalrecordnumber
+          hl7-fhir-au-base.au-ihi
+          hl7-fhir-au-base.date-accuracy-indicator
+          hl7-fhir-r4-core.patient-birthPlace
+          hl7-fhir-r4-core.Identifier
+          hl7-fhir-au-base.au-address
+          hl7-fhir-au-base.date-of-arrival
+          hl7-fhir-r4-core.patient-genderIdentity
+          hl7-fhir-r4-core.patient-birthTime
+          hl7-fhir-r4-core.Address},
+ schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen/desc "This profile defines a patient structure that localises core concepts, including identifiers and terminology, for use in an Australian context. The purpose of this profile is to provide national level agreement on core localised concepts. This profile does not force conformance to core localised concepts. It enables implementers and modellers to make their own rules, i.e. [profiling](http://hl7.org/fhir/profiling.html), about how to support these concepts for specific implementation needs.",
+         :zen.fhir/type "Patient",
+         :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/au-patient",
+         :zen.fhir/version "0.6.22",
+         :confirms #{hl7-fhir-r4-core.Patient/schema
+                     zen.fhir/Resource},
+         :type zen/map,
+         :keys {:address {:type zen/vector,
+                          :every {:zen/desc "An address for the individual",
+                                  :type zen/case,
+                                  :case [{:when {:confirms #{hl7-fhir-au-base.au-address/schema}},
+                                          :then {}}
+                                         {:when {:confirms #{hl7-fhir-r4-core.Address/schema}},
+                                          :then {}}]}},
+                :dateOfArrival {:confirms #{hl7-fhir-au-base.date-of-arrival/schema},
+                                :fhir/extensionUri "http://hl7.org.au/fhir/StructureDefinition/date-of-arrival"},
+                :closingTheGapRegistration {:confirms #{hl7-fhir-au-base.closing-the-gap-registration/schema},
+                                            :fhir/extensionUri "http://hl7.org.au/fhir/StructureDefinition/closing-the-gap-registration"},
+                :mothersMaidenName {:confirms #{hl7-fhir-r4-core.patient-mothersMaidenName/schema},
+                                    :fhir/extensionUri "http://hl7.org/fhir/StructureDefinition/patient-mothersMaidenName"},
+                :birthDate {:zen/desc "Date of birth extended for time and accuracy indicator"},
+                :_birthDate {:type zen/map,
+                             :keys {:accuracyIndicator {:confirms #{hl7-fhir-au-base.date-accuracy-indicator/schema},
+                                                        :fhir/extensionUri "http://hl7.org.au/fhir/StructureDefinition/date-accuracy-indicator",
+                                                        :zen/desc "Birth date accuracy indicator"},
+                                    :birthTime {:confirms #{hl7-fhir-r4-core.patient-birthTime/schema},
+                                                :fhir/extensionUri "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
+                                                :zen/desc "Birth time"}}},
+                :interpreterRequired {:confirms #{hl7-fhir-r4-core.patient-interpreterRequired/schema},
+                                      :fhir/extensionUri "http://hl7.org/fhir/StructureDefinition/patient-interpreterRequired"},
+                :deceased {:fhir/polymorphic true,
+                           :type zen/map,
+                           :keys {:boolean {:zen/desc "Deceased indicator"},
+                                  :dateTime {:zen/desc "Deceased date time"},
+                                  :_dateTime {:type zen/map,
+                                              :keys {:accuracyIndicator {:confirms #{hl7-fhir-au-base.date-accuracy-indicator/schema},
+                                                                         :fhir/extensionUri "http://hl7.org.au/fhir/StructureDefinition/date-accuracy-indicator",
+                                                                         :zen/desc "Deceased date accuracy indicator"}}}}},
+                :link {:type zen/vector,
+                       :every {:zen/desc "Link to a Patient or RelatedPerson resource that concerns the same actual person"}},
+                :indigenousStatus {:confirms #{hl7-fhir-au-base.indigenous-status/schema},
+                                   :fhir/extensionUri "http://hl7.org.au/fhir/StructureDefinition/indigenous-status"},
+                :identifier {:type zen/vector,
+                             :every {:zen/desc "Identifies this patient across multiple systems",
+                                     :type zen/case,
+                                     :case [{:when {:confirms #{hl7-fhir-r4-core.Identifier/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-ihi/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-medicarecardnumber/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-dvanumber/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-healthcarecardnumber/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-pensionerconcessioncardnumber/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-cwlthseniorshealthcardnumber/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-medicalrecordnumber/schema}},
+                                             :then {}}
+                                            {:when {:confirms #{hl7-fhir-au-base.au-insurancemembernumber/schema}},
+                                             :then {}}]}},
+                :birthPlace {:confirms #{hl7-fhir-r4-core.patient-birthPlace/schema},
+                             :fhir/extensionUri "http://hl7.org/fhir/StructureDefinition/patient-birthPlace"},
+                :genderIdentity {:confirms #{hl7-fhir-r4-core.patient-genderIdentity/schema},
+                                 :fhir/extensionUri "http://hl7.org/fhir/StructureDefinition/patient-genderIdentity",
+                                 :zen/desc "The patient's gender identity shall be a member of the Gender Identity Response value set if any of the codes within that value set can apply"},
+                :contact {:type zen/vector,
+                          :every {:type zen/map,
+                                  :keys {:address {:zen/desc "Address for the contact person",
+                                                   :type zen/case,
+                                                   :case [{:when {:confirms #{hl7-fhir-r4-core.Address/schema}},
+                                                           :then {}}
+                                                          {:when {:confirms #{hl7-fhir-au-base.au-address/schema}},
+                                                           :then {}}]}}}}}}}

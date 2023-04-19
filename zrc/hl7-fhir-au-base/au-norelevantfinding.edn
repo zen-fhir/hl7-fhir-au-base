@@ -1,0 +1,29 @@
+{ns hl7-fhir-au-base.au-norelevantfinding,
+ import #{hl7-fhir-r4-core.Observation
+          zen.fhir
+          hl7-fhir-r4-core.Group
+          hl7-fhir-au-base.au-norelevantfinding
+          hl7-fhir-r4-core.Patient},
+ referenceRange-schema {:zen/tags #{zen/schema
+                                    zen.fhir/structure-schema},
+                        :zen.fhir/version "0.6.22"},
+ schema {:zen.fhir/version "0.6.22",
+         :confirms #{hl7-fhir-r4-core.Observation/schema
+                     zen.fhir/Resource},
+         :zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/au-norelevantfinding",
+         :require #{:value :subject},
+         :type zen/map,
+         :zen/desc "This profile provides an observation information structure for asserting a clinical judgement that there are no items of specific interest, (e.g. no current medications or no history of vaccination), for a patient. An assertion of no relevant finding may be used in continuity of care or transfer or care related lists and composition sections.",
+         :keys {:code {:match {:coding #{{:system "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                                          :code "ASSERTION"}}}},
+                :subject {:confirms #{zen.fhir/Reference},
+                          :zen.fhir/reference {:refers #{hl7-fhir-r4-core.Patient/schema
+                                                         hl7-fhir-r4-core.Group/schema}}},
+                :performer {:type zen/vector,
+                            :every {:confirms #{zen.fhir/Reference},
+                                    :zen.fhir/reference {:refers #{}},
+                                    :zen/desc "Asserter of the statement"}},
+                :value {:fhir/polymorphic true, :type zen/map},
+                :referenceRange {:confirms #{hl7-fhir-au-base.au-norelevantfinding/referenceRange-schema}}},
+         :zen.fhir/type "Observation"}}

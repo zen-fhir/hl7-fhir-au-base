@@ -1,0 +1,17 @@
+{ns hl7-fhir-au-base.identifier-routability,
+ import #{zen.fhir
+          hl7-fhir-r4-core.boolean
+          hl7-fhir-r4-core.uri
+          hl7-fhir-r4-core.unsignedInt},
+ schema {:zen.fhir/version "0.6.22",
+         :zen/tags #{zen/schema zen.fhir/structure-schema},
+         :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/identifier-routability",
+         :require #{:routability-asserter :routability-flag},
+         :type zen/map,
+         :zen/desc "This extension applies to the [Identifier](http://hl7.org/fhir/datatypes.html#identifier) data type. Identifier routability preferences for an asserter.",
+         :keys {:routability-flag {:confirms #{hl7-fhir-r4-core.boolean/schema},
+                                   :zen/desc "Indicates asserter can route associated identifier"},
+                :routability-preference {:confirms #{hl7-fhir-r4-core.unsignedInt/schema},
+                                         :zen/desc "Indicates the asserter's preference for selection of this identifier for routing"},
+                :routability-asserter {:confirms #{hl7-fhir-r4-core.uri/schema},
+                                       :zen/desc "Identifies asserter"}}}}
