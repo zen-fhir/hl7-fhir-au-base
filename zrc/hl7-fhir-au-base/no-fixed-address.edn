@@ -4,6 +4,6 @@
          :zen/desc "Indicator of no fixed address",
          :zen.fhir/type "boolean",
          :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/no-fixed-address",
-         :zen.fhir/version "0.6.22",
+         :zen.fhir/version "0.6.22-1",
          :confirms #{hl7-fhir-r4-core.boolean/schema},
          :const {:value true}}}

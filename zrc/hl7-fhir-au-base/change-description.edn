@@ -4,5 +4,5 @@
          :zen/desc "This extension applies to the List resource and is used to represent a narrative description of the change to an item in a list entry. The narrative description may include the reason for the change to an item.",
          :zen.fhir/type "string",
          :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/change-description",
-         :zen.fhir/version "0.6.22",
+         :zen.fhir/version "0.6.22-1",
          :confirms #{hl7-fhir-r4-core.string/schema}}}
