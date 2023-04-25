@@ -6,7 +6,7 @@
          :zen/desc "This extension applies to the [Coding](http://hl7.org/fhir/R4/datatypes.html#Coding) data type and and is used to indicate the type of information covered by the code e.g. branded product with no strength or form. This is useful when there are multiple codings from the same coding system at different levels/classifications.",
          :zen.fhir/type "Coding",
          :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/medication-type",
-         :zen.fhir/version "0.6.23",
+         :zen.fhir/version "0.6.23-1",
          :confirms #{hl7-fhir-r4-core.Coding/schema},
          :zen.fhir/value-set {:symbol hl7-fhir-au-base.value-set.medication-type/value-set,
                               :strength :required}}}
