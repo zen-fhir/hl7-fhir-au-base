@@ -1,12 +1,8 @@
 {ns hl7-fhir-au-base.au-healthprogramparticipation,
  import #{hl7-fhir-r4-core.Observation
           zen.fhir
-          hl7-fhir-au-base.au-healthprogramparticipation
           hl7-fhir-r4-core.Patient},
- referenceRange-schema {:zen/tags #{zen/schema
-                                    zen.fhir/structure-schema},
-                        :zen.fhir/version "0.6.23-1"},
- schema {:zen.fhir/version "0.6.23-1",
+ schema {:zen.fhir/version "0.6.24",
          :confirms #{hl7-fhir-r4-core.Observation/schema
                      zen.fhir/Resource},
          :zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -127,6 +123,5 @@
                                                                  :filter {:engine :match,
                                                                           :match {:code {:coding #{{:system "http://snomed.info/sct",
                                                                                                     :code "1604031000168103"}}}}}}}},
-                            :minItems 1},
-                :referenceRange {:confirms #{hl7-fhir-au-base.au-healthprogramparticipation/referenceRange-schema}}},
+                            :minItems 1}},
          :zen.fhir/type "Observation"}}

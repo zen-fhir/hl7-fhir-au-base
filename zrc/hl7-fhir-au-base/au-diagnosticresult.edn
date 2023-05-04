@@ -7,10 +7,7 @@
           hl7-fhir-au-base.au-imagingresult
           hl7-fhir-au-base.au-pathologyresult
           hl7-fhir-r4-core.value-set.diagnostic-service-sections},
- referenceRange-schema {:zen/tags #{zen/schema
-                                    zen.fhir/structure-schema},
-                        :zen.fhir/version "0.6.23-1"},
- schema {:zen.fhir/version "0.6.23-1",
+ schema {:zen.fhir/version "0.6.24",
          :confirms #{hl7-fhir-r4-core.Observation/schema
                      zen.fhir/Resource},
          :zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -35,6 +32,5 @@
                                     :zen.fhir/reference {:refers #{hl7-fhir-au-base.au-imagingresult/schema
                                                                    hl7-fhir-au-base.au-pathologyresult/schema
                                                                    hl7-fhir-au-base.au-diagnosticresult/schema}},
-                                    :zen/desc "Individual examinations in a group or study series"}},
-                :referenceRange {:confirms #{hl7-fhir-au-base.au-diagnosticresult/referenceRange-schema}}},
+                                    :zen/desc "Individual examinations in a group or study series"}}},
          :zen.fhir/type "Observation"}}
