@@ -3,8 +3,10 @@
           hl7-fhir-r4-core.boolean
           hl7-fhir-r4-core.uri
           hl7-fhir-r4-core.unsignedInt},
- schema {:zen.fhir/version "0.6.27",
-         :zen/tags #{zen/schema zen.fhir/structure-schema},
+ schema {:zen.fhir/version "0.6.28",
+         :zen/tags #{zen.fhir/extension
+                     zen/schema
+                     zen.fhir/structure-schema},
          :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/identifier-routability",
          :require #{:routability-asserter :routability-flag},
          :type zen/map,
