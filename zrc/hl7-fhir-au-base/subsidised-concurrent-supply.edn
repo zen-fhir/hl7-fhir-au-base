@@ -6,5 +6,5 @@
          :zen/desc "This extension applies to the MedicationRequest or MedicationDispense resources and is used to represent the grounds (e.g. [Regulation 49](https://www.pbs.gov.au/info/healthpro/explanatory-notes/section1/Section_1_2_Explanatory_Notes#Regulation-49)) that authorise a PBS or RPBS subsidy for the concurrent supply of an item specified in a prescription and all of its repeats (see [PBS](https://www.pbs.gov.au/info/healthpro/explanatory-notes/section1/Section_1_3_Explanatory_Notes) for further information).",
          :zen.fhir/type "Coding",
          :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/subsidised-concurrent-supply",
-         :zen.fhir/version "0.6.28",
+         :zen.fhir/version "0.6.29",
          :confirms #{hl7-fhir-r4-core.Coding/schema}}}
