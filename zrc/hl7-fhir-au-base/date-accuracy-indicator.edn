@@ -6,5 +6,5 @@
          :zen/desc "Date accuracy coding",
          :zen.fhir/type "Coding",
          :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/date-accuracy-indicator",
-         :zen.fhir/version "0.6.30-12",
+         :zen.fhir/version "0.6.30-13",
          :confirms #{hl7-fhir-r4-core.Coding/schema}}}

@@ -6,5 +6,5 @@
          :zen/desc "Address identifier",
          :zen.fhir/type "Identifier",
          :zen.fhir/profileUri "http://hl7.org.au/fhir/StructureDefinition/address-identifier",
-         :zen.fhir/version "0.6.30-12",
+         :zen.fhir/version "0.6.30-13",
          :confirms #{hl7-fhir-r4-core.Identifier/schema}}}
